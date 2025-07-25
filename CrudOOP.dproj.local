@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2025/07/23 13:03:41.000.998,=C:\Users\Vini_Catharino\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2025/07/23 13:17:24.000.918,=C:\Users\Vini_Catharino\Documents\Embarcadero\Studio\Projects\Unit2.pas</Transaction>
+    <Transaction>2025/07/23 13:19:19.000.726,C:\Users\Vini_Catharino\Documents\Embarcadero\Studio\Projects\Unit2.pas=D:\CrudOOP\Frames\unitFrameListaClientes.pas</Transaction>
+    <Transaction>2025/07/23 13:19:19.000.726,C:\Users\Vini_Catharino\Documents\Embarcadero\Studio\Projects\Unit2.fmx=D:\CrudOOP\Frames\unitFrameListaClientes.fmx</Transaction>
+    <Transaction>2025/07/23 13:20:01.000.094,C:\Users\Vini_Catharino\Documents\Embarcadero\Studio\Projects\Unit1.pas=D:\CrudOOP\View\unitClientes.pas</Transaction>
+    <Transaction>2025/07/23 13:20:01.000.094,C:\Users\Vini_Catharino\Documents\Embarcadero\Studio\Projects\Unit1.fmx=D:\CrudOOP\View\unitClientes.fmx</Transaction>
+    <Transaction>2025/07/23 13:21:03.000.412,=C:\Users\Vini_Catharino\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2025/07/23 13:24:42.000.266,C:\Users\Vini_Catharino\Documents\Embarcadero\Studio\Projects\Unit1.fmx=D:\CrudOOP\View\unitNovoCliente.fmx</Transaction>
+    <Transaction>2025/07/23 13:24:42.000.266,C:\Users\Vini_Catharino\Documents\Embarcadero\Studio\Projects\Unit1.pas=D:\CrudOOP\View\unitNovoCliente.pas</Transaction>
+    <Transaction>2025/07/23 13:26:34.000.572,=C:\Users\Vini_Catharino\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2025/07/23 13:27:20.000.875,C:\Users\Vini_Catharino\Documents\Embarcadero\Studio\Projects\Unit1.pas=D:\CrudOOP\Model\uCliente.pas</Transaction>
+    <Transaction>2025/07/23 13:31:02.000.954,=C:\Users\Vini_Catharino\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2025/07/23 13:31:31.000.470,C:\Users\Vini_Catharino\Documents\Embarcadero\Studio\Projects\Unit1.pas=D:\CrudOOP\Utils\uConexao.pas</Transaction>
+    <Transaction>2025/07/23 13:57:37.000.260,=C:\Users\Vini_Catharino\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2025/07/23 13:58:08.000.967,C:\Users\Vini_Catharino\Documents\Embarcadero\Studio\Projects\Unit1.pas=D:\CrudOOP\DAO\uDAOCliente.pas</Transaction>
+    <Transaction>2025/07/23 16:37:03.000.481,=C:\Users\Vini_Catharino\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2025/07/23 16:37:40.000.742,C:\Users\Vini_Catharino\Documents\Embarcadero\Studio\Projects\Unit1.pas=D:\CrudOOP\Controller\uControllerCliente.pas</Transaction>
+    <Transaction>2025/07/23 17:18:17.000.323,C:\Users\Vini_Catharino\Documents\Embarcadero\Studio\Projects\Project1.dproj=D:\CrudOOP\CrudOOP.dproj</Transaction>
+    <Transaction>2025/07/23 18:13:34.000.881,=D:\CrudOOP\Unit1.pas</Transaction>
+    <Transaction>2025/07/23 18:14:07.000.424,D:\CrudOOP\Unit1.pas=D:\CrudOOP\Utils\core.pas</Transaction>
+    <Transaction>2025/07/23 22:09:40.000.699,=D:\CrudOOP\Frames\unitFrameListaClientes.pas</Transaction>
+    <Transaction>2025/07/24 10:43:31.812,=D:\CrudOOP\Unit1.pas</Transaction>
+    <Transaction>2025/07/24 10:54:37.825,D:\CrudOOP\Model\uAberturaDeTela.pas=D:\CrudOOP\Unit1.pas</Transaction>
+    <Transaction>2025/07/24 11:18:01.717,D:\CrudOOP\View\unitNovoCliente.pas=</Transaction>
+    <Transaction>2025/07/24 11:18:13.624,=D:\CrudOOP\View\unitNovoCliente.pas</Transaction>
+    <Transaction>2025/07/24 11:19:35.833,D:\CrudOOP\Model\uAberturaDeTela.pas=</Transaction>
+    <Transaction>2025/07/24 11:19:45.272,=D:\CrudOOP\Model\uAberturaDeTela.pas</Transaction>
+    <Transaction>2025/07/24 19:04:56.986,D:\CrudOOP\Model\uAberturaDeTelaBase.pas=D:\CrudOOP\Model\uAberturaDeTela.pas</Transaction>
+    <Transaction>2025/07/24 19:05:19.818,=D:\CrudOOP\Unit1.pas</Transaction>
+    <Transaction>2025/07/24 19:05:37.964,D:\CrudOOP\Model\uAberturaTelaBase.pas=D:\CrudOOP\Model\uAberturaDeTelaBase.pas</Transaction>
+    <Transaction>2025/07/24 19:06:01.613,D:\CrudOOP\Model\uAberturaTelaInserir.pas=D:\CrudOOP\Unit1.pas</Transaction>
+    <Transaction>2025/07/24 19:17:23.760,=D:\CrudOOP\Unit1.pas</Transaction>
+    <Transaction>2025/07/24 19:19:43.377,D:\CrudOOP\Model\uAberturaTelaEditar.pas=D:\CrudOOP\Unit1.pas</Transaction>
+    <Transaction>2025/07/24 19:31:12.170,=D:\CrudOOP\Unit1.pas</Transaction>
+    <Transaction>2025/07/24 19:35:20.986,D:\CrudOOP\Controller\uControllerNovoCliente.pas=D:\CrudOOP\Unit1.pas</Transaction>
+    <Transaction>2025/07/24 20:04:51.853,D:\CrudOOP\Frames\a.pas=D:\CrudOOP\Frames\unitFrameListaClientes.pas</Transaction>
+    <Transaction>2025/07/24 20:04:51.853,D:\CrudOOP\Frames\a.fmx=D:\CrudOOP\Frames\unitFrameListaClientes.fmx</Transaction>
+    <Transaction>2025/07/24 20:05:25.105,=D:\CrudOOP\View\Frames\unitFrameListaClientes.pas</Transaction>
+  </Transactions>
+</BorlandProject>
