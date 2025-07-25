@@ -1,0 +1,40 @@
+unit uControllerNovoCliente;
+
+interface
+
+uses
+  uCLiente,
+  uAberturaTelaInserir,
+  uAberturaTelaEditar,
+  unitNovoCliente;
+
+type
+  TControllerNovoCliente = class
+    public
+      class procedure AbrirParaInserir;
+      class procedure AbrirParaEditar(ACliente: TCliente);
+  end;
+
+implementation
+
+{ TControllerNovoCliente }
+
+class procedure TControllerNovoCliente.AbrirParaEditar(ACliente: TCliente);
+var
+  LTela : TFrmNovoCliente;
+begin
+  LTela := TfrmNovoCliente.Create(nil);
+  LTela.ConfigurarAbertura(TAberturaTelaEditar.Create(LTela, ACliente));
+  LTela.Show;
+end;
+
+class procedure TControllerNovoCliente.AbrirParaInserir;
+var
+  LTela : TFrmNovoCliente;
+begin
+  LTela := TfrmNovoCliente.Create(nil);
+  LTela.ConfigurarAbertura(TAberturaTelaInserir.Create(LTela));
+  LTela.Show;
+end;
+
+end.

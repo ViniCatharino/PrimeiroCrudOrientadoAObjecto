@@ -1,0 +1,57 @@
+unit uAberturaTelaInserir;
+
+interface
+
+uses
+  uAberturaTelaBase,
+  unitNovoCliente, uControllerCliente;
+
+type
+  TAberturaTelaInserir = class(TAberturaTela)
+  private
+    FTela : TfrmNovoCliente;
+  public
+    constructor Create(Atela : TfrmNovoCliente);
+    procedure   ConfigurarTela; override;
+    procedure   SalvarDatos;    override;
+  end;
+
+
+implementation
+uses
+  uCliente;
+
+
+
+{ TAberturaTelaInserir }
+
+procedure TAberturaTelaInserir.ConfigurarTela;
+begin
+  FTela.lblTitulo.Text   := 'Novo Cliente';
+  FTela.edtNome.Text     := '';
+  FTela.edtTelefone.Text := '';
+  FTela.edtEmail.Text    := '';
+end;
+
+constructor TAberturaTelaInserir.Create(Atela: TfrmNovoCliente);
+begin
+  FTela := ATela;
+end;
+
+procedure TAberturaTelaInserir.SalvarDatos;
+var
+  LCliente           : TCliente;
+  LControllerCliente : TControllerCliente;
+begin
+  LCliente := TCliente.Create;
+  try
+    LCliente.SetNome     (FTela.edtNome.Text);
+    LCliente.SetTelefone (FTela.edtTelefone.Text);
+    LCliente.SetEmail    (FTela.edtEmail.Text);
+    LControllerCliente.InserirNovoCliente(LCLiente);
+  finally
+    LCliente.Free;
+  end;
+end;
+
+end.

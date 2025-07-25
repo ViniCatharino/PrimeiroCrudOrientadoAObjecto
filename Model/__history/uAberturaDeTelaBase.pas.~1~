@@ -1,0 +1,94 @@
+unit uAberturaDeTela;
+
+interface
+uses
+  uControllerCliente,
+  system.SysUtils,
+  FMX.Dialogs,
+  uCliente;
+
+type
+
+  TAberturaDeTela = class
+    private
+    public
+      procedure ConfigurarTela; virtual; abstract;
+      procedure SalvarDados;    virtual; abstract;
+  end;
+
+  TAberturaDeTelaInserir = class(TAberturaDeTela)
+    private
+    public
+      constructor  Create();
+      procedure    ConfigurarTela; override;
+      procedure    SalvarDados;    override;
+  end;
+
+  TAberturaDeTelaEditar = class(TAberturaDeTela)
+    private
+      FCliente : TCliente;
+    public
+      constructor  Create(ACliente : TCliente);
+      procedure    ConfigurarTela; override;
+      procedure    SalvarDados;    override;
+  end;
+
+
+implementation
+uses
+  unitNovoCliente;
+
+{ TAberturarDeTelaInserir }
+
+procedure TAberturaDeTelaInserir.ConfigurarTela;
+var
+  LTela : TfrmNovoCliente;
+begin
+   LTela.lblTitulo.Text   := 'Novo Cliente';
+   LTela.edtNome.Text     := '';
+   LTela.edtTelefone.Text := '';
+   LTela.edtEmail.Text    := '';
+end;
+
+
+
+constructor TAberturaDeTelaInserir.Create();
+begin
+
+end;
+
+procedure TAberturaDeTelaInserir.SalvarDados;
+var
+  LControllerCLiente : TControllerCLiente;
+  LTela              : TFrmNovoCliente;
+begin
+  if LControllerCliente.InserirNovoCliente(LTela.EdtNome.Text,
+                                           LTela.EdtTelefone.text,
+                                           LTela.EdtEmail.Text) then
+    Showmessage('Salvo com Sucesso');
+end;
+
+{ TAberturarDeTelaEditar }
+
+procedure TAberturaDeTelaEditar.ConfigurarTela;
+var
+  LTela: TFrmNovoCliente;
+begin
+  Ltela := TFrmNovoCliente.Create(nil);
+  LTela.lblTitulo.Text   := 'Editar Cliente';
+  LTela.edtNome.Text     := FCliente.getNome;
+  LTela.edtTelefone.Text := FCliente.getTelefone;
+  LTela.edtEmail.Text    := FCliente.getEmail;
+end;
+
+constructor TAberturaDeTelaEditar.Create(ACliente: TCliente);
+begin
+  FCliente := ACliente;
+end;
+
+procedure TAberturaDeTelaEditar.SalvarDados;
+begin
+
+end;
+
+end.

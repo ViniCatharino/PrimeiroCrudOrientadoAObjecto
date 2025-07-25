@@ -1,0 +1,81 @@
+unit uCliente;
+
+interface
+  uses
+    System.SysUtils;
+
+type
+  TCliente = class
+    private
+      FId       : integer;
+      FNome     : String;
+      FTelefone : String;
+      FEmail    : String;
+    public
+      Procedure SetId(Const Value : Integer);
+      function  GetId : Integer;
+      Procedure SetNome(Const Value : String);
+      function  GetNome : String;
+      Procedure SetTelefone(Const Value : String);
+      function  GetTelefone : String;
+      Procedure SetEmail(Const Value : String);
+      function  GetEmail : String;
+  end;
+
+implementation
+
+{ TCliente }
+
+function TCliente.GetEmail: String;
+begin
+  Result := FEmail;
+end;
+
+function TCliente.GetId: Integer;
+begin
+  Result := FId;
+end;
+
+function TCliente.GetNome: String;
+begin
+  Result := FNome;
+end;
+
+function TCliente.GetTelefone: String;
+begin
+  Result := FTelefone;
+end;
+
+procedure TCliente.SetEmail(const Value: String);
+begin
+  If Trim(Value).IsEmpty then
+    raise Exception.Create('Email não Informado');
+  FEmail := Value
+end;
+
+procedure TCliente.SetId(const Value: Integer);
+begin
+   If IntToStr(Value).IsEmpty then
+    raise Exception.Create('Id não Informado');
+  FId := Value
+end;
+
+procedure TCliente.SetNome(Const Value: String);
+begin
+
+  if Trim(Value).IsEmpty then
+    raise Exception.Create('Nome não Informado');
+
+  FNome := Value;
+
+end;
+
+procedure TCliente.SetTelefone(const Value: String);
+begin
+   if Trim(Value).IsEmpty then
+    raise Exception.Create('Telefone não Informado');
+
+  FTelefone := Value;
+end;
+
+end.

@@ -1,0 +1,141 @@
+unit unitClientes;
+
+interface
+
+uses
+  System.SysUtils,
+  System.Types,
+  System.UITypes,
+  System.Classes,
+  System.Variants,
+  FMX.Types,
+  FMX.Controls,
+  FMX.Forms,
+  FMX.Graphics,
+  FMX.Dialogs,
+  FMX.StdCtrls,
+  FMX.Objects,
+  FMX.TabControl,
+  FMX.Controls.Presentation,
+  FMX.Layouts,
+  FMX.ListBox,
+  FireDAC.Stan.Intf,
+  FireDAC.Stan.Option,
+  FireDAC.Stan.Error,
+  FireDAC.UI.Intf,
+  FireDAC.Phys.Intf,
+  FireDAC.Stan.Def,
+  FireDAC.Stan.Pool,
+  FireDAC.Stan.Async,
+  FireDAC.Phys,
+  FireDAC.FMXUI.Wait,
+  Data.DB,
+  FireDAC.Comp.Client,
+  unitNovoCliente,
+  core, unitFrameListaClientes, uCliente, System.Generics.Collections,
+  uControllerCliente, uControllerNovoCliente;
+
+type
+  TfrmClientes = class(TForm)
+    lblTitulo: TLabel;
+    TabControl1: TTabControl;
+    tabNovoCliente: TTabItem;
+    tabClientes: TTabItem;
+    rectFundoClientes: TRectangle;
+    rectBotoes: TRectangle;
+    btnNovoCliente: TButton;
+    btnAlterarCliente: TButton;
+    btnExcluir: TButton;
+    rectCabecario: TRectangle;
+    lblId: TLabel;
+    lblNome: TLabel;
+    lblTelefone: TLabel;
+    lblEmail: TLabel;
+    lbClientes: TListBox;
+    procedure btnNovoClienteClick(Sender: TObject);
+    procedure btnAlterarClienteClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+  private
+    FClienteSelecionado : TCliente;
+    procedure RefreshCliente;
+    procedure addListBoxCliente(ACliente : TCliente);
+    procedure SelecionarCliente(Sender: Tobject);
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmClientes: TfrmClientes;
+
+implementation
+
+{$R *.fmx}
+
+procedure TfrmClientes.btnAlterarClienteClick(Sender: TObject);
+begin
+  TControllerNovoCliente.abrirParaEditar(FClienteSelecionado);
+end;
+
+procedure TfrmClientes.btnNovoClienteClick(Sender: TObject);
+begin
+  TControllerNovoCliente.abrirParaInserir;
+end;
+
+procedure TfrmClientes.FormShow(Sender: TObject);
+begin
+  RefreshCliente;
+end;
+
+procedure TfrmClientes.RefreshCliente;
+var
+  LCliente      : TCliente;
+  LListaCliente : TObjectList<TCLiente>;
+begin
+  lbClientes.Items.Clear;
+  LCLiente      := TCliente.Create;
+  LListaCliente := TControllerCliente.ListarClientes;
+  try
+    for LCliente in LListaCliente do
+      addListBoxCliente(LCliente);
+  finally
+    LListaCliente.Free;
+  end;
+end;
+
+procedure TfrmClientes.addListBoxCliente(ACliente : TCliente);
+var
+  LFrame : TframeListaClientes;
+  LItem  : TListBoxItem;
+begin
+  LItem := TListBoxItem.Create(lbClientes);
+
+  Litem.Text       := '';
+  Litem.Height     := 50;
+  Litem.Tag        := ACliente.GetId;
+  Litem.Selectable := False;
+  Litem.onclick    := SelecionarCliente;
+
+  LFrame := TFrameListaClientes.Create(nil);
+
+  Lframe.lblId.Text       := ACliente.GetId.ToString;
+  Lframe.lblNome.Text     := ACliente.GetNome;
+  Lframe.lblTelefone.Text := ACliente.GetTelefone;
+  Lframe.lblEmail.Text    := ACliente.GetEmail;
+
+  Litem.AddObject(LFrame);
+  lbClientes.AddObject(Litem);
+end;
+
+procedure TfrmClientes.SelecionarCliente(Sender: Tobject);
+var
+  Ltag : Integer;
+begin
+  LTag := TListBoxItem(Sender).Tag;
+  try
+    FClienteSelecionado := TControllerCliente.ListarClientesPorId(LTag);
+  except on ex:Exception do
+    raise Exception.Create('Erro ao selecionar Cliente' + Ex.Message);
+  end;
+end;
+end.

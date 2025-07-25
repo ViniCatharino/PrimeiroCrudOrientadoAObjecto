@@ -1,0 +1,175 @@
+object frmClientes: TfrmClientes
+  Left = 0
+  Top = 0
+  Caption = 'Clientes'
+  ClientHeight = 530
+  ClientWidth = 772
+  Fill.Kind = Solid
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  DesignerMasterStyle = 0
+  object lblTitulo: TLabel
+    Align = Top
+    StyledSettings = [Family, Style, FontColor]
+    Margins.Left = 10.000000000000000000
+    Margins.Top = 10.000000000000000000
+    Position.X = 10.000000000000000000
+    Position.Y = 10.000000000000000000
+    Size.Width = 762.000000000000000000
+    Size.Height = 30.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.Font.Size = 28.000000000000000000
+    Text = 'Clientes'
+    TabOrder = 0
+  end
+  object TabControl1: TTabControl
+    Align = Client
+    Size.Width = 772.000000000000000000
+    Size.Height = 490.000000000000000000
+    Size.PlatformDefault = False
+    TabIndex = 0
+    TabOrder = 1
+    TabPosition = None
+    Sizes = (
+      772s
+      490s
+      772s
+      490s)
+    object tabClientes: TTabItem
+      CustomIcon = <
+        item
+        end>
+      TextSettings.Trimming = None
+      IsSelected = True
+      Size.Width = 8.000000000000000000
+      Size.Height = 8.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = ''
+      TabOrder = 0
+      Text = 'tabClientes'
+      object rectFundoClientes: TRectangle
+        Align = Client
+        Fill.Color = claWhite
+        Size.Width = 772.000000000000000000
+        Size.Height = 490.000000000000000000
+        Size.PlatformDefault = False
+        Stroke.Kind = None
+        object rectBotoes: TRectangle
+          Align = Bottom
+          Position.Y = 440.000000000000000000
+          Size.Width = 772.000000000000000000
+          Size.Height = 50.000000000000000000
+          Size.PlatformDefault = False
+          Stroke.Kind = None
+          object btnNovoCliente: TButton
+            Position.X = 8.000000000000000000
+            Position.Y = 20.000000000000000000
+            TabOrder = 2
+            Text = 'Novo'
+            TextSettings.Trimming = None
+            OnClick = btnNovoClienteClick
+          end
+          object btnAlterarCliente: TButton
+            Position.X = 96.000000000000000000
+            Position.Y = 20.000000000000000000
+            TabOrder = 1
+            Text = 'Alterar'
+            TextSettings.Trimming = None
+            OnClick = btnAlterarClienteClick
+          end
+          object btnExcluir: TButton
+            Position.X = 184.000000000000000000
+            Position.Y = 20.000000000000000000
+            TabOrder = 0
+            Text = 'Excluir'
+            TextSettings.Trimming = None
+          end
+        end
+        object rectCabecario: TRectangle
+          Align = Top
+          Margins.Top = 20.000000000000000000
+          Position.Y = 20.000000000000000000
+          Size.Width = 772.000000000000000000
+          Size.Height = 30.000000000000000000
+          Size.PlatformDefault = False
+          Stroke.Kind = None
+          object lblId: TLabel
+            Align = Left
+            StyledSettings = [Family, Style, FontColor]
+            Margins.Left = 10.000000000000000000
+            Position.X = 10.000000000000000000
+            Size.Width = 80.000000000000000000
+            Size.Height = 30.000000000000000000
+            Size.PlatformDefault = False
+            TextSettings.Font.Size = 14.000000000000000000
+            Text = 'Id'
+            TabOrder = 3
+          end
+          object lblNome: TLabel
+            Align = Client
+            StyledSettings = [Family, Style, FontColor]
+            Margins.Left = 10.000000000000000000
+            Size.Width = 352.000000000000000000
+            Size.Height = 30.000000000000000000
+            Size.PlatformDefault = False
+            TextSettings.Font.Size = 14.000000000000000000
+            Text = 'Nome'
+            TabOrder = 2
+          end
+          object lblTelefone: TLabel
+            Align = Right
+            StyledSettings = [Family, Style, FontColor]
+            Margins.Right = 10.000000000000000000
+            Position.X = 452.000000000000000000
+            Size.Width = 150.000000000000000000
+            Size.Height = 30.000000000000000000
+            Size.PlatformDefault = False
+            TextSettings.Font.Size = 14.000000000000000000
+            Text = 'Telefone'
+            TabOrder = 1
+          end
+          object lblEmail: TLabel
+            Align = Right
+            StyledSettings = [Family, Style, FontColor]
+            Margins.Right = 10.000000000000000000
+            Position.X = 612.000000000000000000
+            Size.Width = 150.000000000000000000
+            Size.Height = 30.000000000000000000
+            Size.PlatformDefault = False
+            TextSettings.Font.Size = 14.000000000000000000
+            Text = 'Email'
+            TabOrder = 0
+          end
+        end
+        object ListBox1: TListBox
+          Align = Client
+          Size.Width = 772.000000000000000000
+          Size.Height = 390.000000000000000000
+          Size.PlatformDefault = False
+          StyleLookup = 'transparentlistboxstyle'
+          TabOrder = 2
+          DisableFocusEffect = True
+          DefaultItemStyles.ItemStyle = ''
+          DefaultItemStyles.GroupHeaderStyle = ''
+          DefaultItemStyles.GroupFooterStyle = ''
+          Viewport.Width = 772.000000000000000000
+          Viewport.Height = 390.000000000000000000
+        end
+      end
+    end
+    object tabNovoCliente: TTabItem
+      CustomIcon = <
+        item
+        end>
+      TextSettings.Trimming = None
+      IsSelected = False
+      Size.Width = 8.000000000000000000
+      Size.Height = 8.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = ''
+      TabOrder = 0
+      Text = 'tabNovoCliente'
+    end
+  end
+end

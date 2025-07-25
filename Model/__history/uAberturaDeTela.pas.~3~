@@ -1,0 +1,83 @@
+unit uAberturaDeTela;
+
+interface
+uses
+  unitNovoCliente,
+  uControllerCliente,
+  system.SysUtils, FMX.Dialogs, uCliente;
+
+type
+  TAberturaDeTela = class
+    private
+    public
+      procedure ConfigurarTela; virtual; abstract;
+      procedure SalvarDados;    virtual; abstract;
+  end;
+
+  TAberturarDeTelaInserir = class(TAberturaDeTela)
+    private
+      FTela : TfrmNovoCliente;
+    public
+      constructor  Create(ATela : TfrmNovoCliente);
+      procedure    ConfigurarTela; override;
+      procedure    SalvarDados;    override;
+  end;
+
+  TAberturarDeTelaEditar = class(TAberturaDeTela)
+    private
+      FTela    : TfrmNovoCliente;
+      FCliente : TCliente;
+    public
+      constructor  Create(ATela : TfrmNovoCliente; ACliente : TCliente);
+      procedure    ConfigurarTela; override;
+      procedure    SalvarDados;    override;
+  end;
+
+
+implementation
+
+{ TAberturarDeTelaInserir }
+
+procedure TAberturarDeTelaInserir.ConfigurarTela;
+begin
+   FTela.lblTitulo.Text   := 'Editar Cliente';
+   FTela.edtNome.Text     := '';
+   FTela.edtTelefone.Text := '';
+   FTela.edtEmail.Text    := '';
+end;
+
+constructor TAberturarDeTelaInserir.Create(ATela: TfrmNovoCliente);
+begin
+  FTela := ATela;
+end;
+
+procedure TAberturarDeTelaInserir.SalvarDados;
+var
+  LControllerCLiente : TControllerCLiente;
+begin
+  if LControllerCliente.InserirNovoCliente(FTela.EdtNome.Text,
+                                           FTela.EdtTelefone.text,
+                                           FTela.EdtEmail.Text) then
+    Showmessage('Salvo com Sucesso');
+end;
+
+{ TAberturarDeTelaEditar }
+
+procedure TAberturarDeTelaEditar.ConfigurarTela;
+begin
+
+end;
+
+constructor TAberturarDeTelaEditar.Create(ATela: TfrmNovoCliente;
+                                          ACliente: TCliente);
+begin
+  FTela    := ATela;
+  FCliente := ACliente;
+end;
+
+procedure TAberturarDeTelaEditar.SalvarDados;
+begin
+
+end;
+
+end.

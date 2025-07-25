@@ -1,0 +1,87 @@
+unit uControllerCliente;
+
+interface
+
+uses
+  uCliente,
+  uDAOCliente,
+  System.Generics.Collections, System.SysUtils;
+type
+  TControllerCliente = class
+    private
+
+    public
+    class function InserirNovoCliente(ACLiente : TCliente) : boolean;
+    class function EditarCliente(ACliente: TCliente): Boolean;
+    class function ListarClientes : TObjectList<TCliente>;
+    class function ListarClientesPorId(AID :Integer): TCliente;
+  end;
+
+
+implementation
+
+{ TControllerCliente }
+
+class function TControllerCliente.EditarCliente(ACliente: TCliente): Boolean;
+var
+  LCliente : TCliente;
+  LDao     : TDAOCliente;
+begin
+
+  Result := False;
+  LDao := TDAOCliente.Create;
+  try
+    Result := LDao.Alterar(LCliente);
+  finally
+    LDao.Free;
+  end;
+
+end;
+
+class function TControllerCliente.InserirNovoCliente(ACLiente : TCliente) :Boolean;
+var
+  LDao     : TDaoCliente;
+begin
+  Result := False;
+  LDao := TDaoCliente.Create;
+  try
+    Result := Ldao.Inserir(ACliente);
+  finally
+    LDao.Free;
+  end;
+end;
+
+class function TControllerCliente.ListarClientes: TObjectList<TCliente>;
+var
+  LDAO : TDaoCliente;
+begin
+
+  LDAO := TDAOCLiente.Create;
+  try
+    Result := LDAO.listarTodas;
+  finally
+    LDAO.Free;
+  end;
+
+end;
+
+class function TControllerCliente.ListarClientesPorId(AID :Integer): TCliente;
+var
+  LDAO : TDaoCliente;
+begin
+
+  LDAO := TDAOCLiente.Create;
+  try
+    try
+    Result := LDAO.listarPorId(AId);
+    except
+      on ex:Exception do
+        raise Exception.Create('Erro ao selecionar Cliente' + Ex.Message);
+    end;
+  finally
+    LDAO.Free;
+  end;
+
+end;
+
+end.

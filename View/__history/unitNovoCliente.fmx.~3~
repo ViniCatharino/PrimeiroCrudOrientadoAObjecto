@@ -1,0 +1,94 @@
+object frmNovoCliente: TfrmNovoCliente
+  Left = 0
+  Top = 0
+  Caption = 'Form1'
+  ClientHeight = 324
+  ClientWidth = 573
+  Fill.Kind = Solid
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  DesignerMasterStyle = 0
+  object lblTitulo: TLabel
+    Align = Top
+    StyledSettings = [Family, Style, FontColor]
+    Margins.Left = 10.000000000000000000
+    Margins.Top = 10.000000000000000000
+    Position.X = 10.000000000000000000
+    Position.Y = 10.000000000000000000
+    Size.Width = 563.000000000000000000
+    Size.Height = 30.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.Font.Size = 28.000000000000000000
+    Text = 'Novo Cliente'
+    TabOrder = 0
+  end
+  object lblNome: TLabel
+    StyledSettings = [Family, Style, FontColor]
+    Position.X = 10.000000000000000000
+    Position.Y = 72.000000000000000000
+    TextSettings.Font.Size = 14.000000000000000000
+    Text = 'Nome'
+    TabOrder = 4
+  end
+  object edtNome: TEdit
+    Touch.InteractiveGestures = [LongTap, DoubleTap]
+    TabOrder = 6
+    Position.X = 10.000000000000000000
+    Position.Y = 97.000000000000000000
+    Size.Width = 263.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+  end
+  object edtTelefone: TEdit
+    Touch.InteractiveGestures = [LongTap, DoubleTap]
+    TabOrder = 5
+    Position.X = 10.000000000000000000
+    Position.Y = 153.000000000000000000
+    Size.Width = 263.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+  end
+  object Label1: TLabel
+    StyledSettings = [Family, Style, FontColor]
+    Position.X = 10.000000000000000000
+    Position.Y = 128.000000000000000000
+    TextSettings.Font.Size = 14.000000000000000000
+    Text = 'Telefone'
+    TabOrder = 2
+  end
+  object Label2: TLabel
+    StyledSettings = [Family, Style, FontColor]
+    Position.X = 10.000000000000000000
+    Position.Y = 184.000000000000000000
+    TextSettings.Font.Size = 14.000000000000000000
+    Text = 'Email'
+    TabOrder = 1
+  end
+  object edtEmail: TEdit
+    Touch.InteractiveGestures = [LongTap, DoubleTap]
+    TabOrder = 3
+    Position.X = 10.000000000000000000
+    Position.Y = 209.000000000000000000
+    Size.Width = 263.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+  end
+  object btnSalvar: TButton
+    Anchors = [akRight, akBottom]
+    Position.X = 485.000000000000000000
+    Position.Y = 294.000000000000000000
+    TabOrder = 8
+    Text = 'Salvar'
+    TextSettings.Trimming = None
+    OnClick = btnSalvarClick
+  end
+  object btnCancelar: TButton
+    Anchors = [akRight, akBottom]
+    Position.X = 397.000000000000000000
+    Position.Y = 294.000000000000000000
+    TabOrder = 7
+    Text = 'Cancelar'
+    TextSettings.Trimming = None
+  end
+end

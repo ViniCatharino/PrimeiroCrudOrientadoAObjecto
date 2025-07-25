@@ -1,0 +1,15 @@
+unit uAberturaTelaEditar;
+
+interface
+
+uses
+  uAberturaTelaBase,
+  uCliente,
+  unitNovoCliente;
+
+type
+  TAberturaTelaEditar = class(TAberturaTelaBase)
+
+implementation
+
+end.

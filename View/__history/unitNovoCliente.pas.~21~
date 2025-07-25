@@ -1,0 +1,79 @@
+unit unitNovoCliente;
+
+interface
+
+uses
+  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
+  FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Edit,
+  FMX.Controls.Presentation, FMX.StdCtrls, uCliente, uDAOCliente,
+  uControllerCliente,core,uAberturaDeTela;
+
+type
+  TfrmNovoCliente = class(TForm)
+    lblTitulo: TLabel;
+    lblNome: TLabel;
+    edtNome: TEdit;
+    edtTelefone: TEdit;
+    Label1: TLabel;
+    Label2: TLabel;
+    edtEmail: TEdit;
+    btnSalvar: TButton;
+    btnCancelar: TButton;
+    procedure btnSalvarClick(Sender: TObject);
+    procedure btnCancelarClick(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure FormShow(Sender: TObject);
+  private
+    { Private declarations }
+    FTipoAberturaDeTela : TTipoAberturaTela;
+    FClienteSelecionado : TCliente;
+    FAberturaDeTela     : TAberturaDeTela;
+    procedure PrepararAberturaTela;
+  public
+    { Public declarations }
+    property TipoAbertura : TTipoAberturaTela read FTipoAberturaDeTela write FTipoAberturaDeTela;
+    property ClienteSelecionado : TCliente read FClienteSelecionado write FClienteSelecionado;
+  end;
+
+var
+  frmNovoCliente: TfrmNovoCliente;
+
+implementation
+
+
+{$R *.fmx}
+
+procedure TfrmNovoCliente.btnCancelarClick(Sender: TObject);
+begin
+  Close;
+end;
+
+procedure TfrmNovoCliente.btnSalvarClick(Sender: TObject);
+begin
+  FAberturaDeTela.SalvarDados;
+end;
+
+
+procedure TfrmNovoCliente.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  Action         := TCloseAction.caFree;
+  frmNovoCliente := nil;
+end;
+
+procedure TfrmNovoCliente.FormShow(Sender: TObject);
+begin
+  PrepararAberturaTela;
+  FAberturaDeTela.ConfigurarTela;
+end;
+
+procedure TfrmNovoCliente.PrepararAberturaTela;
+begin
+  case FTipoAberturaDeTela of
+    tatInserir:
+      FAberturaDeTela := TAberturaDeTelaInserir.Create(Self);
+    tatEditar:
+      FAberturaDeTela := TAberturaDeTelaEditar.Create(Self, ClienteSelecionado);
+  end;
+end;
+
+end.

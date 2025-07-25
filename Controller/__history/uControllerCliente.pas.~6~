@@ -1,0 +1,97 @@
+unit uControllerCliente;
+
+interface
+
+uses
+  uCliente,
+  uDAOCliente,
+  System.Generics.Collections;
+type
+  TControllerCliente = class
+    private
+    public
+    class function InserirNovoCliente(ANome,ATelefone,AEmail : String) : Boolean;
+    class function EditarCliente(AID                    : Integer;
+                                 ANome,ATelefone,AEmail : String)      : Boolean;
+    class function ListarClientes : TObjectList<TCliente>;
+  end;
+
+
+implementation
+
+{ TControllerCliente }
+
+class function TControllerCliente.EditarCliente(AID                    : Integer;
+                                                ANome, ATelefone,AEmail: String): Boolean;
+var
+  LCliente : TCliente;
+  LDao     : TDAOCliente;
+begin
+
+  Result := False;
+
+  LCliente := TCliente.Create;
+  try
+    LCliente.SetId(AID);
+    LCliente.SetNome(ANome);
+    LCLiente.SetTelefone(ATelefone);
+    LCliente.SetEmail(AEmail);
+
+    LDao := TDAOCliente.Create;
+    try
+      Result := LDao.Alterar(LCliente);
+    finally
+      LDao.Free;
+    end;
+
+  finally
+    LCliente.Free;
+  end;
+
+end;
+
+class function TControllerCliente.InserirNovoCliente(ANome, ATelefone,
+                                                     AEmail: String): Boolean;
+var
+  LCliente : TCliente;
+  LDao     : TDaoCliente;
+begin
+
+  Result := False;
+
+  LCliente := TCliente.Create;
+  try
+    LCliente.SetNome(ANome);
+    LCliente.SetTelefone(ATelefone);
+    LCliente.SetEmail(AEmail);
+
+    LDao := TDaoCliente.Create;
+    try
+      Result := Ldao.Inserir(LCliente);
+    finally
+      LDao.Free;
+    end;
+
+  finally
+    LCliente.Free;
+  end;
+
+
+
+end;
+
+class function TControllerCliente.ListarClientes: TObjectList<TCliente>;
+var
+  LDAO : TDaoCliente;
+begin
+
+  LDAO := TDAOCLiente.Create;
+  try
+    Result := LDAO.listarTodas;
+  finally
+    LDAO.Free;
+  end;
+
+end;
+
+end.

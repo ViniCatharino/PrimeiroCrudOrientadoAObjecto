@@ -1,0 +1,212 @@
+unit uDAOCliente;
+
+interface
+uses
+  uCliente,
+  uConexao,
+  FireDAC.Comp.Client,
+  System.SysUtils,
+  System.Classes,
+  System.Generics.Collections;
+type
+  TDAOCliente = class(TConexao)
+    private
+    public
+      function Inserir   (ACliente : TCliente): Boolean;
+      function Alterar   (ACliente : TCliente): Boolean;
+      function Excluir   (ACliente : TCliente): Boolean;
+      function listarTodas : TObjectList<TCliente>;
+      function listarPorId(AID : Integer): TCliente;
+  end;
+
+implementation
+
+{ TDAOCliente }
+
+function TDAOCliente.Alterar(ACliente: TCliente): Boolean;
+var
+  LQry  : TFDQuery;
+  LConn : Tconexao;
+begin
+  Result := False;
+
+  LQry  := TFDQuery.Create(nil);
+  Lconn := TConexao.Create;
+  Conectar;
+  try
+    try
+      LQry.Active := False;
+      LQry.SQL.Clear;
+      LQry.SQL.Add('UPDATE CLIENTES        ');
+      LQry.SQL.Add('SET                    ');
+      LQry.SQL.Add('  NOME     = :NOME     ');
+      LQry.SQL.Add('  TELEFONE = :TELEFONE ');
+      LQry.SQL.Add('  EMAIL    = :EMAIL    ');
+      LQry.SQL.Add('WHERE ID   = :ID');
+      LQry.ParamByName('Nome').AsString     := ACliente.GetNome;
+      LQry.ParamByName('Telefone').AsString := ACliente.GetTelefone;
+      LQry.ParamByName('Email').AsString    := ACliente.GetEmail;
+      LQry.ParamByName('ID').AsInteger      := ACliente.GetId;
+      LQry.Connection := Conn;
+      LQry.ExecSQL;
+
+      Result := true;
+    except
+      on Ex:Exception do
+        raise Exception.Create('Erro ao Editar Cliente' + Ex.Message);
+    end;
+  finally
+    LQry.Free;
+    LConn.Free;
+  end;
+
+end;
+
+function TDAOCliente.Excluir(ACliente: TCliente): Boolean;
+var
+  LQry     : TFDQuery;
+  LConn    : TConexao;
+  LCLiente : TCliente;
+begin
+  LCOnn    := TConexao.Create;
+  conectar;
+  Result   := False;
+  LQry     := TFDQuery.Create(nil);
+  try
+    try
+      LQry.Active := False;
+      LQry.SQL.Clear;
+      LQry.Connection := conn;
+      LQry.SQL.Add('Delete from Clientes');
+      LQry.SQL.Add('Where Id = :Id      ');
+      LQry.ParamByName('Id').asInteger := ACliente.GetId;
+      LQry.ExecSQL;
+      Result := True;
+
+    except on EX:Exception do
+      begin
+        raise Exception.Create('Erro ao Deletar Cliente' + ex.Message);
+      end;
+    end;
+  finally
+    LCOnn.Free;
+    LQry.Free;
+  end;
+end;
+
+function TDAOCliente.Inserir(ACliente: TCliente): Boolean;
+var
+  LQry  : TFDQuery;
+  LConn : Tconexao;
+begin
+  Result := False;
+
+  LQry  := TFDQuery.Create(nil);
+  Lconn := TConexao.Create;
+  Conectar;
+  try
+    try
+      LQry.Active := False;
+      LQry.SQL.Clear;
+      LQry.SQL.Add('INSERT INTO CLIENTES( Nome,  Telefone,  Email)');
+      LQry.SQL.Add('VALUEs              (:Nome, :Telefone, :Email)');
+      LQry.ParamByName('Nome').AsString     := ACliente.GetNome;
+      LQry.ParamByName('Telefone').AsString := ACliente.GetTelefone;
+      LQry.ParamByName('Email').AsString    := ACliente.GetEmail;
+      LQry.Connection := Conn;
+      LQry.ExecSQL;
+
+      Result := true;
+    except
+      on Ex:Exception do
+        raise Exception.Create('Erro ao inserir Cliente' + Ex.Message);
+    end;
+  finally
+    LQry.Free;
+    LConn.Free;
+  end;
+
+end;
+
+function TDAOCliente.listarPorId(AID : Integer): TCliente;
+var
+  LQry     : TFDQuery;
+  LConn    : TConexao;
+  LCLiente : TCliente;
+begin
+  LCOnn    := TConexao.Create;
+  conectar;
+  LQry     := TFDQuery.Create(nil);
+  LCliente := TCliente.Create;
+  Result   := LCliente;
+  try
+    try
+      LQry.Active := False;
+      LQry.SQL.Clear;
+      LQry.Connection := conn;
+      LQry.SQL.Add('Select * from Clientes');
+      LQry.SQL.Add('Where Id = :Id        ');
+      LQry.ParamByName('id').AsInteger := AId;
+      LQry.Active := True;
+
+      LCliente.SetId      (LQry.FieldByName('Id').AsInteger);
+      LCLiente.SetNome    (LQry.fieldByName('Nome').AsString);
+      LCLiente.SetTelefone(LQry.fieldByName('Telefone').AsString);
+      LCLiente.SetEmail   (LQry.fieldByName('Email').AsString);
+      Result := LCliente;
+
+    except on EX:Exception do
+      begin
+        raise Exception.Create('Erro ao listar Clientes por Id' + ex.Message);
+        Result.Free;
+      end;
+    end;
+  finally
+    LCOnn.Free;
+    LQry.Free;
+  end;
+
+end;
+
+function TDAOCliente.listarTodas: TObjectList<TCliente>;
+var
+  LQry     : TFDQuery;
+  LConn    : TConexao;
+  LCLiente : TCliente;
+begin
+  LCOnn    := TConexao.Create;
+  conectar;
+  Result   := TObjectList<TCliente>.Create;
+  LQry     := TFDQuery.Create(nil);
+  try
+    try
+      LQry.Active := False;
+      LQry.SQL.Clear;
+      LQry.Connection := conn;
+      LQry.SQL.Add('Select * from Clientes');
+      LQry.Active := True;
+
+      LQry.First;
+      while not LQry.Eof do
+      begin
+        LCLiente := TCliente.Create;
+        LCLiente.SetId      (LQry.fieldByName('Id').AsInteger);
+        LCLiente.SetNome    (LQry.fieldByName('Nome').AsString);
+        LCLiente.SetTelefone(LQry.fieldByName('Telefone').AsString);
+        LCLiente.SetEmail   (LQry.fieldByName('Email').AsString);
+        Result.Add(LCliente);
+        LQry.Next;
+      end;
+    except on EX:Exception do
+      begin
+        raise Exception.Create('Erro ao listar Clientes' + ex.Message);
+        Result.Free;
+      end;
+    end;
+  finally
+    LCOnn.Free;
+    LQry.Free;
+  end;
+end;
+
+end.

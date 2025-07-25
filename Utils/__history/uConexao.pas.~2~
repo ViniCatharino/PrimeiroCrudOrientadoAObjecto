@@ -1,0 +1,62 @@
+unit uConexao;
+
+interface
+
+uses
+  System.SysUtils,
+  System.IniFiles,
+  FireDAC.Comp.Client,
+  FireDAC.Stan.Def,
+  FireDAC.Stan.Async,
+  FireDAC.Stan.Param,
+  FireDAC.Stan.Option,
+  FireDAC.Stan.Pool,
+  FireDAC.Phys.FB,
+  FireDAC.Phys.FBDef,
+  FireDAC.UI.Intf,
+  FireDAC.VCLUI.Wait,
+  FireDAC.Comp.UI,
+  FireDAC.DApt,
+  FireDAC.Phys;
+
+
+var
+  FDConnection: TFDConnection;
+
+procedure Conectar;
+
+
+implementation
+
+procedure Conectar;
+var
+  LConn   : TFDConnection;
+  LDriver : TFDPhysFBDriverLink;
+begin
+  LDriver := TFDPhysFBDriverLink.Create(nil);
+  LConn   := TFDCOnnection.Create(nil);
+
+  try
+    try
+      LConn.Params.Add('DriverID=     FB                                  ');
+      LConn.Params.Add('Database=     D:\CrudOOP\Banco de dados\BANCO.FDB ');
+      LConn.Params.Add('User_Name=    SYSDBA                              ');
+      LConn.Params.Add('Password=     sysdba                              ');
+      LConn.Params.Add('CharacterSet= UTF8                                ');
+      LConn.Params.Add('Protocol=     TCPIP                               ');
+      LConn.Params.Add('Server=       LocalHost                           ');
+      LConn.Params.Add('Port=         3050                                ');
+      LDriver.VendorLib := 'D:\Firebird_3_0\fbclient.dll';
+      LConn.LoginPrompt := False;
+      LConn.Connected   := true;
+    except on ex:Exception do
+      raise Exception.Create('Erro ao conectar ao banco de dados: ' + ex.Message);
+    end;
+  finally
+    LDriver.Free;
+    LConn.Free
+  end;
+
+end;
+
+end.

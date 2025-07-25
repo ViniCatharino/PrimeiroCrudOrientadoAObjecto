@@ -1,0 +1,23 @@
+unit uAberturaDeTela;
+
+interface
+uses
+  unitNovoCliente;
+
+type
+  TAberturaDeTela = class
+    private
+    public
+      procedure ConfigurarTela; virtual; abstract;
+      procedure SalvarDados;    virtual; abstract;
+  end;
+
+  TAberturarDeTelaInserir = class
+    private
+    FTela : TfrmNovaCliente
+    public
+  end;
+
+implementation
+
+end.

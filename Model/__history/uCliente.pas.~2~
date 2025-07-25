@@ -1,0 +1,21 @@
+unit uCliente;
+
+interface
+
+type
+  TCliente = class
+    private
+      FId       : integer;
+      FNome     : String;
+      FTelefone : String;
+      FEmail    : String;
+    public
+      property Id       : Integer read Fid write FId;
+      property Nome     : String read FNome write FNome;
+      property Telefone : String read FTelefone write FTelefone;
+      property Email    : String read FEmail write FEmail;
+  end;
+
+implementation
+
+end.
